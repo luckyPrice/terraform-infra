@@ -167,6 +167,9 @@ jobs:
         run: |
           echo "Destruction confirmed. Proceeding with Terraform destroy operation."
 
+
+
+          
       - name: Terraform Init for Destroy
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.TF_ASW_AWS_ACCESS_KEY_ID }}
