@@ -147,7 +147,7 @@ jobs:
         run: |
           cd terraform_stage; terraform init \
             -backend-config="region=ap-northeast-2" \
-            -backend-config="bucket=asw-terraformstate" \
+            -backend-config="bucket=asw-terraform-state" \
             -backend-config="key=stage/terraform/terraform.tfstate"
 
   backend_destroy:
@@ -181,6 +181,6 @@ jobs:
         if: ${{ github.event.inputs.confirm_destroy == 'DESTROY' }}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.TF_ASW_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.TF_ASW_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.ASW_AWS_SECRET_ACCESS_KEY }}
         run: |
           cd terraform_stage; terraform destroy -auto-approve
