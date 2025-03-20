@@ -150,6 +150,10 @@ jobs:
             -backend-config="bucket=asw-terraformstate" \
             -backend-config="key=stage/terraform/terraform.tfstate"
 
+
+
+            
+
   backend_destroy:
     runs-on: ubuntu-latest
     needs: backend_setup
