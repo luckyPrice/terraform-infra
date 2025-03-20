@@ -143,7 +143,7 @@ jobs:
       - name: Terraform Backend Init
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.TF_ASW_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.TF_ASW_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.ASW_AWS_SECRET_ACCESS_KEY }}
         run: |
           cd terraform_stage; terraform init \
             -backend-config="region=ap-northeast-2" \
@@ -170,7 +170,7 @@ jobs:
       - name: Terraform Init for Destroy
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.TF_ASW_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.TF_ASW_AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.ASW_AWS_SECRET_ACCESS_KEY }}
         run: |
           cd terraform_stage; terraform init \
             -backend-config="region=ap-northeast-2" \
