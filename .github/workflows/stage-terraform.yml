@@ -174,7 +174,7 @@ jobs:
         run: |
           cd terraform_stage; terraform init \
             -backend-config="region=ap-northeast-2" \
-            -backend-config="bucket=aws-terraform-state" \
+            -backend-config="bucket=asw-terraform-state" \
             -backend-config="key=stage/terraform/terraform.tfstate"
 
       - name: Terraform Destroy
