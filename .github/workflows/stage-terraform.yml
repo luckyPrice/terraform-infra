@@ -152,7 +152,7 @@ jobs:
 
 
 
-            
+
 
   backend_destroy:
     runs-on: ubuntu-latest
@@ -188,3 +188,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.ASW_AWS_SECRET_ACCESS_KEY }}
         run: |
           cd terraform_stage; terraform destroy -auto-approve
+# test
+# test
+# test
+# test
