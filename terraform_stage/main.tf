@@ -10,6 +10,8 @@ terraform {
   }
 }
 
+
+
 ##Sharedservic resources
 module "vpc" {
   source              = "../modules/vpc"
