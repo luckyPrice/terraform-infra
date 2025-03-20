@@ -2,11 +2,11 @@ terraform {
  required_version = ">= 1.0.0, < 2.0.0"
 
   backend "s3" {
-    bucket = "jung9546-terraformstate"
+    bucket = "asw-terraformstate"
     key  = "dev/terraform/terraform.tfstate"
     region = "ap-northeast-2"
     encrypt = true
-    dynamodb_table = "jung9546-terraform-state"
+    dynamodb_table = "asw-terraform-state"
   }
 }
 
