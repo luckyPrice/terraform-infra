@@ -31,6 +31,8 @@ module "vpc" {
   subnet_service_az2 = var.subnet_service_az2
   subnet_db_az1  = var.subnet_db_az1
   subnet_db_az2  = var.subnet_db_az2
+
+  
  
   ##SecurityGroup
   #sg_allow_comm_list = concat(var.ext_sg_allow_list, ["${module.vpc.nat_ip}/32", var.vpc_ip_range])
@@ -44,7 +46,7 @@ module "vpc" {
   #security_attachments_propagation = merge(var.security_attachments_propagation, var.security_attachments)
 }
 
-# module "jung9546-ec2" {
+# module "asw-ec2" {
 #   source              = "../modules/instance"
 
 #   stage        = var.stage
@@ -115,7 +117,7 @@ module "vpc" {
 #   source       = "../modules/aurora"
 #   stage        = var.stage
 #   servicename  = var.servicename
-  
+
 #   tags = var.tags
 #   dbname = var.rds_dbname
  

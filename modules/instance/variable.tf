@@ -4,12 +4,12 @@ variable "stage" {
 }
 variable "servicename" {
   type  = string
-  default = "jung9546"
+  default = "asw"
 }
 variable "tags" {
   type = map(string)
   default = {
-    "name" = "jung9546-EC2"
+    "name" = "asw-EC2"
   }
 }
 
