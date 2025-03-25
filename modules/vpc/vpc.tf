@@ -126,24 +126,27 @@ resource "aws_internet_gateway" "vpc-igw" {
 }
 
 # EIP for NAT
-resource "aws_eip" "nat-eip" {
-  vpc = "true"
-  depends_on                = [aws_internet_gateway.vpc-igw]
-  tags = merge(tomap({
-         Name = "aws-eip-${var.stage}-${var.servicename}-nat"}), 
-        var.tags)
-}
+# no nat
+
+# resource "aws_eip" "nat-eip" {
+#   vpc = "true"
+#   depends_on                = [aws_internet_gateway.vpc-igw]
+#   tags = merge(tomap({
+#          Name = "aws-eip-${var.stage}-${var.servicename}-nat"}), 
+#         var.tags)
+# }
 
 # NAT
-resource "aws_nat_gateway" "vpc-nat" {
-  allocation_id = aws_eip.nat-eip.id
-  subnet_id     = aws_subnet.public-az1.id
-  depends_on = [aws_internet_gateway.vpc-igw, 
-                aws_eip.nat-eip]
-  tags = merge(tomap({
-         Name = "aws-nat-${var.stage}-${var.servicename}"}), 
-        var.tags)    
-}
+# no nat
+# resource "aws_nat_gateway" "vpc-nat" {
+#   allocation_id = aws_eip.nat-eip.id
+#   subnet_id     = aws_subnet.public-az1.id
+#   depends_on = [aws_internet_gateway.vpc-igw, 
+#                 aws_eip.nat-eip]
+#   tags = merge(tomap({
+#          Name = "aws-nat-${var.stage}-${var.servicename}"}), 
+#         var.tags)    
+# }
 
 
 #routetable
