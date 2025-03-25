@@ -44,6 +44,9 @@ module "vpc" {
   #security_attachments_propagation = merge(var.security_attachments_propagation, var.security_attachments)
 }
 
+
+
+
 module "asw-ec2" {
   source              = "../modules/instance"
 
@@ -108,6 +111,7 @@ resource "aws_security_group" "sg-ec2" {
          Name = "aws-sg-${var.stage}-${var.servicename}-ec2"}), 
         var.tags)
 }
+
 
 # RDS
 # module "rds" {
