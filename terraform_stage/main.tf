@@ -32,10 +32,8 @@ module "vpc" {
   subnet_db_az1  = var.subnet_db_az1
   subnet_db_az2  = var.subnet_db_az2
 
-  
- 
   ##SecurityGroup
-  #sg_allow_comm_list = concat(var.ext_sg_allow_list, ["${module.vpc.nat_ip}/32", var.vpc_ip_range])
+  sg_allow_comm_list = concat(var.ext_sg_allow_list, ["${module.vpc.nat_ip}/32", var.vpc_ip_range])
 
   ##TGW
   #create_tgw = var.create_tgw
