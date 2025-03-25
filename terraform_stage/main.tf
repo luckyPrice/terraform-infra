@@ -45,13 +45,6 @@
   }
 
 
-  module "iam-service-role" {
-    source      = "../modules/iam/iam-service-role"
-    stage       = var.stage
-    servicename = var.servicename
-    tags        = var.tags
-  }
-
   module "asw-ec2" {
     source              = "../modules/instance"
 
@@ -64,7 +57,7 @@
     ebs_size                  = var.instance_ebs_size
     #user_data                 = var.instance_user_data
     kms_key_id                = var.ebs_kms_key_id
-    ec2-iam-role-profile-name = module.iam-service-role.ec2-iam-role-profile-name
+    ec2-iam-role-profile-name = module.iam-service-role.ec2_iam_role_profile_name
     ssh_allow_comm_list       = [var.subnet_service_az1, var.subnet_service_az2]
 
     associate_public_ip_address = var.associate_public_ip_address
