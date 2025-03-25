@@ -32,6 +32,7 @@ resource "aws_subnet" "public-az1" {
     aws_vpc.aws-vpc
   ]
 }
+
 resource "aws_subnet" "public-az2" {
   vpc_id                  = aws_vpc.aws-vpc.id
   cidr_block              = var.subnet_public_az2
@@ -202,11 +203,11 @@ resource "aws_route_table" "aws-rt-pri" {
         var.tags)
 }
 
-resource "aws_route" "route-to-nat" {
-  route_table_id         = aws_route_table.aws-rt-pri.id
-  destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id = aws_nat_gateway.vpc-nat.id
-}
+# resource "aws_route" "route-to-nat" {
+#   route_table_id         = aws_route_table.aws-rt-pri.id
+#   destination_cidr_block = "0.0.0.0/0"
+#   nat_gateway_id = aws_nat_gateway.vpc-nat.id
+# }
 
 #routetable association
 resource "aws_route_table_association" "public-az1" {
