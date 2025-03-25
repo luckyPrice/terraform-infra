@@ -42,7 +42,7 @@ module "vpc" {
   #security_attachments_propagation = merge(var.security_attachments_propagation, var.security_attachments)
 }
 
-# module "jung9546-ec2" {
+# module "asw-ec2" {
 #   source              = "../modules/instance"
 
 #   stage        = var.stage
