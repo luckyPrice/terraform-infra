@@ -64,7 +64,7 @@
     ebs_size                  = var.instance_ebs_size
     #user_data                 = var.instance_user_data
     kms_key_id                = var.ebs_kms_key_id
-    ec2_iam_role_profile_name = module.iam-service-role.ec2_iam_role_profile_name
+    ec2-iam-role-profile-name = module.iam-service-role.asw_iam_role_profile_name
     ssh_allow_comm_list       = [var.subnet_service_az1, var.subnet_service_az2]
 
     associate_public_ip_address = var.associate_public_ip_address
