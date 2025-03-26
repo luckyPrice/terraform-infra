@@ -45,41 +45,41 @@
   }
 
 
-#   module "iam-service-role" {
-#   source      = "../modules/iam/iam-service-role"
-#   stage       = var.stage
-#   servicename = var.servicename
-#   tags        = var.tags
-# }
+  module "iam-service-role" {
+  source      = "../modules/iam/iam-service-role"
+  stage       = var.stage
+  servicename = var.servicename
+  tags        = var.tags
+}
 
-  # module "asw-ec2" {
-  #   source              = "../modules/instance"
+  module "asw-ec2" {
+    source              = "../modules/instance"
 
-  #   stage        = var.stage
-  #   servicename  = "${var.servicename}"
-  #   tags         = var.tags
+    stage        = var.stage
+    servicename  = "${var.servicename}"
+    tags         = var.tags
 
-  #   ami                       = var.ami
-  #   instance_type             = var.instance_type
-  #   ebs_size                  = var.instance_ebs_size
-  #   #user_data                 = var.instance_user_data
-  #   kms_key_id                = var.ebs_kms_key_id
-  #   ec2-iam-role-profile-name = module.iam-service-role.ec2_iam_role_profile_name
-  #   ssh_allow_comm_list       = [var.subnet_service_az1, var.subnet_service_az2]
+    ami                       = var.ami
+    instance_type             = var.instance_type
+    ebs_size                  = var.instance_ebs_size
+    #user_data                 = var.instance_user_data
+    kms_key_id                = var.ebs_kms_key_id
+    ec2-iam-role-profile-name = module.iam-service-role.ec2_iam_role_profile_name
+    ssh_allow_comm_list       = [var.subnet_service_az1, var.subnet_service_az2]
 
-  #   associate_public_ip_address = var.associate_public_ip_address
+    associate_public_ip_address = var.associate_public_ip_address
 
-  #   subnet_id = module.vpc.public-az1.id
-  #   vpc_id    = module.vpc.vpc_id
-  #   user_data = <<-EOF
-  # #!/bin/bash 
-  # yum update -y 
-  # yum install -y https://s3.ap-northeast-2.amazonaws.com/amazon-ssm-ap-northeast-2/latest/linux_amd64/amazon-ssm-agent.rpm
-  # EOF
-  #   ##SecurityGroup
-  #   sg_ec2_ids = [aws_security_group.sg-ec2.id]
-  #   #depends_on = [module.vpc.sg-ec2-comm, module.iam-service-role.ec2-iam-role-profile]
-  # }
+    subnet_id = module.vpc.public-az1.id
+    vpc_id    = module.vpc.vpc_id
+    user_data = <<-EOF
+  #!/bin/bash 
+  yum update -y 
+  yum install -y https://s3.ap-northeast-2.amazonaws.com/amazon-ssm-ap-northeast-2/latest/linux_amd64/amazon-ssm-agent.rpm
+  EOF
+    ##SecurityGroup
+    sg_ec2_ids = [aws_security_group.sg-ec2.id]
+    #depends_on = [module.vpc.sg-ec2-comm, module.iam-service-role.ec2-iam-role-profile]
+  }
 
   resource "aws_security_group" "sg-ec2" {
     name   = "aws-sg-${var.stage}-${var.servicename}-ec2"
