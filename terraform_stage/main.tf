@@ -78,7 +78,7 @@
   EOF
     ##SecurityGroup
     sg_ec2_ids = [aws_security_group.sg-ec2.id]
-    # depends_on = [module.vpc.sg-ec2-comm, module.iam-service-role.ec2-iam-role-profile]
+    depends_on = [module.vpc.sg-ec2-comm, module.iam-service-role.ec2-iam-role-profile]
   }
 
   resource "aws_security_group" "sg-ec2" {
