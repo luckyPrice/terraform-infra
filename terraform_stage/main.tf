@@ -82,7 +82,7 @@
   }
 
   resource "aws_security_group" "sg-ec2" {
-    name   = "aws-sg-${var.stage}-${var.servicename}-ec2"
+    name   = "asw-sg-${var.stage}-${var.servicename}-ec2"
     vpc_id = module.vpc.vpc_id
 
     ingress {
