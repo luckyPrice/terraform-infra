@@ -118,25 +118,25 @@
   }
 
 
-# RDS
-# module "rds" {
-#   #default engin aurora-mysql8.0
-#   source       = "../modules/aurora"
-#   stage        = var.stage
-#   servicename  = var.servicename
+#RDS
+module "rds" {
+  #default engin aurora-mysql8.0
+  source       = "../modules/aurora"
+  stage        = var.stage
+  servicename  = var.servicename
 
-#   tags = var.tags
-#   dbname = var.rds_dbname
+  tags = var.tags
+  dbname = var.rds_dbname
  
-# #  sg_allow_ingress_list_aurora    = var.sg_allow_ingress_list_aurora
-# #  sg_allow_ingress_sg_list_aurora = concat([module.vpc.sg-ec2-comm.id, module.eks.eks_node_sg_id], var.sg_allow_list_aurora_sg_add)
-#   sg_allow_ingress_list_aurora = var.sg_allow_ingress_list_aurora
-#   network_vpc_id                  = module.vpc.network-vpc.id
-#   subnet_ids = [module.vpc.db-az1.id, module.vpc.db-az2.id]
-#   az           = var.az
+#  sg_allow_ingress_list_aurora    = var.sg_allow_ingress_list_aurora
+#  sg_allow_ingress_sg_list_aurora = concat([module.vpc.sg-ec2-comm.id, module.eks.eks_node_sg_id], var.sg_allow_list_aurora_sg_add)
+  sg_allow_ingress_list_aurora = var.sg_allow_ingress_list_aurora
+  network_vpc_id                  = module.vpc.network-vpc.id
+  subnet_ids = [module.vpc.db-az1.id, module.vpc.db-az2.id]
+  az           = var.az
 
-#   rds_instance_count = var.rds_instance_count
-
-#   kms_key_id = var.rds_kms_arn
-#   depends_on = [module.vpc]
-# }
+  rds_instance_count = var.rds_instance_count
+ 
+  kms_key_id = var.rds_kms_arn
+  depends_on = [module.vpc]
+}
