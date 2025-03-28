@@ -123,4 +123,4 @@ variable "rds_kms_arn" {
 variable "ebs_kms_key_id" {
   type = string
   default = "arn:aws:kms:ap-northeast-2:509399622222:key/8b064049-4f50-4388-9f4b-f9f8a3342d38"
-}
+} 

@@ -37,7 +37,31 @@ variable "ebs_size" {
 }
 variable "user_data" {
   type = string
-  default = ""
+  default = <<-EOF
+    #!/bin/bash
+    yum update -y
+    yum install -y nginx
+
+    # Nginx 리버스 프록시 설정
+    cat <<EOL > /etc/nginx/conf.d/example.com.conf
+    server {
+        listen 80;
+        server_name www.example.com;
+
+        location / {
+            proxy_pass http://www.example.com;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+    }
+    EOL
+
+    # Nginx 재시작
+    systemctl enable nginx
+    systemctl start nginx
+  EOF
 }
 variable "kms_key_id" {
   type = string
