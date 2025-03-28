@@ -37,32 +37,9 @@ variable "ebs_size" {
 }
 variable "user_data" {
   type = string
-  default = <<-EOF
-    #!/bin/bash
-    sudo yum update -y
-    sudo yum install -y nginx
-
-    # Nginx 리버스 프록시 설정
-    sudo tee /etc/nginx/conf.d/portfollio.conf > /dev/null <<EOL
-    server {
-        listen 80;
-        server_name _;
-
-        location / {
-            proxy_pass http://www.portfolio.cloudwoon.com;
-            proxy_set_header Host \$host;
-            proxy_set_header X-Real-IP \$remote_addr;
-            proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Proto \$scheme;
-        }
-    }
-    EOL
-
-    # Nginx 서비스 활성화 및 시작
-    sudo systemctl enable nginx
-    sudo systemctl start nginx
-  EOF
+  default = ""
 }
+
 variable "kms_key_id" {
   type = string
 }

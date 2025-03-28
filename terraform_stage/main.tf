@@ -75,7 +75,34 @@
   #!/bin/bash 
   yum update -y 
   yum install -y https://s3.ap-northeast-2.amazonaws.com/amazon-ssm-ap-northeast-2/latest/linux_amd64/amazon-ssm-agent.rpm
-  EOF
+
+  # Nginx 설치 및 시작
+  yum install -y nginx
+  systemctl enable nginx
+  systemctl start nginx
+
+  # 로그 파일 생성
+  echo "EC2 Instance is up and running" > /var/log/instance_status.log
+
+  # Nginx Reverse Proxy 설정
+  cat <<EOL | sudo tee /etc/nginx/conf.d/portfolio.conf
+  server {
+      listen 80;
+      server_name _;
+
+      location / {
+          proxy_pass http://www.portfolio.cloudwoon.com;
+          proxy_set_header Host \$host;
+          proxy_set_header X-Real-IP \$remote_addr;
+          proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto \$scheme;
+      }
+  }
+  EOL
+
+  # Nginx 재시작
+  systemctl restart nginx
+EOF
     ##SecurityGroup
     sg_ec2_ids = [aws_security_group.sg-ec2.id]
     depends_on = [module.vpc.sg-ec2-comm, module.iam-service-role.ec2-iam-role-profile]
